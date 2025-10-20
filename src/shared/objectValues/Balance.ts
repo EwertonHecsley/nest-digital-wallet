@@ -1,6 +1,5 @@
-import { InvalidBalanceException } from "../exceptions/InvalidBalanceException";
-import { Either, left, right } from "../utils/either";
-
+import { InvalidBalanceException } from '../exceptions/InvalidBalanceException';
+import { Either, left, right } from '../utils/either';
 
 export class Balance {
   private readonly _valueInCents: number;
