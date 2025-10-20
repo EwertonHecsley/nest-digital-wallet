@@ -45,4 +45,8 @@ export class UserClient extends Entity<UserClientAttributes> {
   get createdAt():Date{
     return this._attributes.createdAt;
   }
+
+  get UserType():string{
+    return this._attributes.userType;
+  }
 }
