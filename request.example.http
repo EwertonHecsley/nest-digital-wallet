@@ -1,0 +1,13 @@
+@baseUrl= http://localhost:3000
+
+###
+POST {{baseUrl}}/userClient
+Content-Type: application/json
+
+{
+    "fullName": "Ewerton Hecsley",
+    "email": "ewerton@email.com",
+    "password": "1234",
+    "cpf": "09253538414"
+}
+

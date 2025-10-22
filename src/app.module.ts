@@ -7,6 +7,7 @@ import { AccountsModule } from './accounts/accounts.module';
     ConfigModule.forRoot({
       isGlobal: true,
       validate,
+      envFilePath: `.env`,
     }),
     AccountsModule,
   ],
