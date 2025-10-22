@@ -56,6 +56,10 @@ export class UserClient extends Entity<UserClientAttributes> {
     return this._attributes.userType;
   }
 
+  get balance(): Balance {
+    return this._attributes.balance;
+  }
+
   changeFullName(
     newFullName: string,
   ): Either<InvalidFullNameException, UserClient> {
