@@ -10,18 +10,18 @@ import { CreateUserClientController } from './controllers/create.controller';
   imports: [DatabaseModule, ServiceModule],
   providers: [
     {
-        provide:CreateUseClientUseCase,
-        useFactory:(
-            userClientGateway:UserClientGateway,
-            passwordHashGateway:PasswordHashGateway
-        )=>{
-            return new CreateUseClientUseCase(
-                userClientGateway,
-                passwordHashGateway
-            );
-        },
-        inject:[UserClientGateway,PasswordHashGateway]
-    }
+      provide: CreateUseClientUseCase,
+      useFactory: (
+        userClientGateway: UserClientGateway,
+        passwordHashGateway: PasswordHashGateway,
+      ) => {
+        return new CreateUseClientUseCase(
+          userClientGateway,
+          passwordHashGateway,
+        );
+      },
+      inject: [UserClientGateway, PasswordHashGateway],
+    },
   ],
   controllers: [CreateUserClientController],
 })

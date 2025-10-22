@@ -12,8 +12,11 @@ export class UserClientRepository implements UserClientGateway {
 
   async create(entity: UserClient): Promise<UserClient> {
     const data = UserClientMapper.toDatabase(entity);
-    const result = await this.drizzle.db.insert(userClient).values(data);
-    return UserClientMapper.toDomain(result);
+    const result = await this.drizzle.db
+      .insert(userClient)
+      .values(data)
+      .returning();
+    return UserClientMapper.toDomain(result[0]);
   }
 
   async findByEmail(email: string): Promise<UserClient | null> {
