@@ -5,9 +5,9 @@ POST {{baseUrl}}/userClient
 Content-Type: application/json
 
 {
-    "fullName": "Ewerton Hecsley",
-    "email": "ewerton@email.com",
+    "fullName": "Usuario Teste 7",
+    "email": "usuario7@email.com",
     "password": "1234",
-    "cpf": "09253538414"
+    "cpf": "12345678907"
 }
 
