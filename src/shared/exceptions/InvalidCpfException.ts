@@ -1,9 +1,8 @@
-export class InvalidCpfException extends Error {
-  statusCode: number;
+import { HttpException } from "@nestjs/common";
 
+export class InvalidCpfException extends HttpException {
   constructor(message: string = 'Invalid CPF.') {
-    super(message);
-    this.statusCode = 400;
+    super(message, 400);
     this.name = 'InvalidCpf';
   }
 }

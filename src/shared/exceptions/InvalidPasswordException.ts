@@ -1,8 +1,8 @@
-export class InvalidPasswordException extends Error {
-  statusCode: number;
+import { HttpException } from "@nestjs/common";
+
+export class InvalidPasswordException extends HttpException {
   constructor(message: string = 'Password invalid.') {
-    super(message);
-    this.statusCode = 400;
+    super(message, 400);
     this.name = 'InvalidPasswordException';
   }
 }
