@@ -5,9 +5,12 @@ POST {{baseUrl}}/userClient
 Content-Type: application/json
 
 {
-    "fullName": "Usuario Teste 7",
-    "email": "usuario7@email.com",
+    "fullName": "Usuario Teste 10",
+    "email": "usuario10@email.com",
     "password": "1234",
-    "cpf": "12345678907"
+    "cpf": "12345678999"
 }
 
+###
+GET {{baseUrl}}/userClient?page=2&limit=5
+Content-Type: application/json
