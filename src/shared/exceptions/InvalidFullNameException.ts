@@ -1,8 +1,8 @@
-export class InvalidFullNameException extends Error {
-  statusCode: number;
+import { HttpException } from "@nestjs/common";
+
+export class InvalidFullNameException extends HttpException {
   constructor(message: string = 'Full name must have at least 3 characters.') {
-    super(message);
-    this.statusCode = 400;
+    super(message, 400);
     this.name = 'InvalidFullNameException';
   }
 }

@@ -19,7 +19,7 @@ export class CreateUserClientController {
     const result = await this.createUserClientUseCase.execute(data);
     if (result.isLeft()) {
       const { message } = result.value;
-      response.status(400).json({ message });
+      response.status(result.value.getStatus()).json({ message });
       return;
     }
 

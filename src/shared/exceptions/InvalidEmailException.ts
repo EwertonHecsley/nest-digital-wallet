@@ -1,9 +1,8 @@
-export class InvalidEmailException extends Error {
-  statusCode: number;
+import { HttpException } from "@nestjs/common";
 
+export class InvalidEmailException extends HttpException {
   constructor(message: string = 'Invalid Email.') {
-    super(message);
-    this.statusCode = 400;
+    super(message, 400);
     this.name = 'InvalidEmail';
   }
 }
