@@ -1,6 +1,10 @@
 @baseUrl= http://localhost:3000
 
 ###
+GET  {{baseUrl}}/health
+Content-Type: application/json
+
+###
 POST {{baseUrl}}/userClient
 Content-Type: application/json
 
@@ -12,5 +16,5 @@ Content-Type: application/json
 }
 
 ###
-GET {{baseUrl}}/userClient?page=2&limit=5
+GET {{baseUrl}}/userClient?page=1&limit=10
 Content-Type: application/json
