@@ -17,7 +17,7 @@ export class CreateUserClientController {
     @Res() response: Response,
   ): Promise<void> {
     const result = await this.createUserClientUseCase.execute(data);
-    
+
     if (result.isLeft()) {
       throw result.value;
     }
