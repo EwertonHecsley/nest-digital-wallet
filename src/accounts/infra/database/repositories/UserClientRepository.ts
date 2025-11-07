@@ -60,4 +60,13 @@ export class UserClientRepository implements UserClientGateway {
       limit,
     };
   }
+
+  async findById(id: string): Promise<UserClient | null> {
+    const user = await this.drizzle.db
+      .select()
+      .from(userClient)
+      .where(eq(userClient.id, id));
+
+    return user.length > 0 ? UserClientMapper.toDomain(user[0]) : null;
+  }
 }

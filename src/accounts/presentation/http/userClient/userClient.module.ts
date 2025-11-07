@@ -7,6 +7,8 @@ import { ServiceModule } from 'src/accounts/infra/services/service.module';
 import { CreateUserClientController } from './controllers/create.controller';
 import { ListUserClientsUseCase } from 'src/accounts/application/userClient/useCase/List';
 import { ListUserClientController } from './controllers/list.controller';
+import { FindUserClientUseCase } from 'src/accounts/application/userClient/useCase/Find';
+import { FindUserClientController } from './controllers/find.controller';
 
 @Module({
   imports: [DatabaseModule, ServiceModule],
@@ -31,7 +33,18 @@ import { ListUserClientController } from './controllers/list.controller';
       },
       inject: [UserClientGateway],
     },
+    {
+      provide: FindUserClientUseCase,
+      useFactory: (userClientGateway: UserClientGateway) => {
+        return new FindUserClientUseCase(userClientGateway);
+      },
+      inject: [UserClientGateway],
+    },
   ],
-  controllers: [CreateUserClientController, ListUserClientController],
+  controllers: [
+    CreateUserClientController,
+    ListUserClientController,
+    FindUserClientController,
+  ],
 })
 export class UserClientModule {}

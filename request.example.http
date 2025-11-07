@@ -18,3 +18,7 @@ Content-Type: application/json
 ###
 GET {{baseUrl}}/userClient?page=1&limit=10
 Content-Type: application/json
+
+###
+GET {{baseUrl}}/userClient/223c20ea-32d5-4d00-8da2-2530b73a49c5
+Content-Type: application/json
