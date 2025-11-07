@@ -17,7 +17,7 @@ export class ListUserClientController {
     @Res() response: Response,
   ): Promise<void> {
     const result = await this.listUserClientsUseCase.execute({
-      page:  _page ?? 1, 
+      page: _page ?? 1,
       limit: _limit ?? 10,
     });
 
@@ -28,7 +28,7 @@ export class ListUserClientController {
     }
 
     const { data, limit, page, total } = result.value;
-    
+
     response.json({
       message: 'List All Users',
       data: data.map((u) => UserClientPresenter.toHTTP(u)),

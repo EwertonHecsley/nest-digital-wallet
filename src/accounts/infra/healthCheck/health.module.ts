@@ -7,10 +7,11 @@ import { DatabaseHealthIndicator } from './DatabaseHealthIndicator';
 @Module({
   imports: [
     TerminusModule.forRoot({
-      errorLogStyle:'pretty'
+      errorLogStyle: 'pretty',
     }),
-    HttpModule],
-  controllers:[HealthController],
-  providers:[DatabaseHealthIndicator]
+    HttpModule,
+  ],
+  controllers: [HealthController],
+  providers: [DatabaseHealthIndicator],
 })
 export class HealthModule {}

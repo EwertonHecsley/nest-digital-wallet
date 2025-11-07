@@ -19,4 +19,5 @@ export abstract class UserClientGateway {
   abstract listAll(
     params: FindAllParams,
   ): Promise<PaginatedResponse<UserClient>>;
+  abstract findById(id: string): Promise<UserClient | null>;
 }
