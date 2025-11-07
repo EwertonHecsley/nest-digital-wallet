@@ -9,6 +9,8 @@ import { ListUserClientsUseCase } from 'src/accounts/application/userClient/useC
 import { ListUserClientController } from './controllers/list.controller';
 import { FindUserClientUseCase } from 'src/accounts/application/userClient/useCase/Find';
 import { FindUserClientController } from './controllers/find.controller';
+import { DeleteUserClientUseCase } from 'src/accounts/application/userClient/useCase/Delete';
+import { DeleteUserClientController } from './controllers/delete.controller';
 
 @Module({
   imports: [DatabaseModule, ServiceModule],
@@ -40,11 +42,19 @@ import { FindUserClientController } from './controllers/find.controller';
       },
       inject: [UserClientGateway],
     },
+    {
+      provide:DeleteUserClientUseCase,
+      useFactory:(userclientGateway:UserClientGateway)=>{
+        return new DeleteUserClientUseCase(userclientGateway);
+      },
+      inject:[UserClientGateway]
+    }
   ],
   controllers: [
     CreateUserClientController,
     ListUserClientController,
     FindUserClientController,
+    DeleteUserClientController
   ],
 })
 export class UserClientModule {}

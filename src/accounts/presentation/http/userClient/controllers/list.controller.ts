@@ -32,8 +32,8 @@ export class ListUserClientController {
     response.json({
       message: 'List All Users',
       data: data.map((u) => UserClientPresenter.toHTTP(u)),
-      limit,
-      page,
+      limit:Number(limit),
+      page:Number(page),
       total,
     });
   }

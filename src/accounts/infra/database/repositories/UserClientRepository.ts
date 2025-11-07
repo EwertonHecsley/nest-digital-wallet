@@ -69,4 +69,8 @@ export class UserClientRepository implements UserClientGateway {
 
     return user.length > 0 ? UserClientMapper.toDomain(user[0]) : null;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.drizzle.db.delete(userClient).where(eq(userClient.id, id));
+  }
 }

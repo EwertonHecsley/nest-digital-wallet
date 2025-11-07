@@ -22,3 +22,6 @@ Content-Type: application/json
 ###
 GET {{baseUrl}}/userClient/223c20ea-32d5-4d00-8da2-2530b73a49c5
 Content-Type: application/json
+
+###
+DELETE {{baseUrl}}/userClient/5bfd7066-b2db-48f9-ac56-d8a1edd61b40
