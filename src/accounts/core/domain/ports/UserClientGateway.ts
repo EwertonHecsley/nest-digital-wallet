@@ -21,4 +21,5 @@ export abstract class UserClientGateway {
   ): Promise<PaginatedResponse<UserClient>>;
   abstract findById(id: string): Promise<UserClient | null>;
   abstract delete(id: string): Promise<void>;
+  abstract save(entity: UserClient): Promise<void>;
 }

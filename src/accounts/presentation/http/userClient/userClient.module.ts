@@ -43,18 +43,18 @@ import { DeleteUserClientController } from './controllers/delete.controller';
       inject: [UserClientGateway],
     },
     {
-      provide:DeleteUserClientUseCase,
-      useFactory:(userclientGateway:UserClientGateway)=>{
+      provide: DeleteUserClientUseCase,
+      useFactory: (userclientGateway: UserClientGateway) => {
         return new DeleteUserClientUseCase(userclientGateway);
       },
-      inject:[UserClientGateway]
-    }
+      inject: [UserClientGateway],
+    },
   ],
   controllers: [
     CreateUserClientController,
     ListUserClientController,
     FindUserClientController,
-    DeleteUserClientController
+    DeleteUserClientController,
   ],
 })
 export class UserClientModule {}
