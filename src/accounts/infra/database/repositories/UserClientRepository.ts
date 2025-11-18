@@ -73,4 +73,12 @@ export class UserClientRepository implements UserClientGateway {
   async delete(id: string): Promise<void> {
     await this.drizzle.db.delete(userClient).where(eq(userClient.id, id));
   }
+
+  async save(entity: UserClient): Promise<void> {
+    const data = UserClientMapper.toDatabase(entity);
+    await this.drizzle.db
+      .update(userClient)
+      .set(data)
+      .where(eq(userClient.id, entity.identity.id));
+  }
 }
