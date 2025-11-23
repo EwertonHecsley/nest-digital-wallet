@@ -11,6 +11,8 @@ import { FindUserClientUseCase } from 'src/accounts/application/userClient/useCa
 import { FindUserClientController } from './controllers/find.controller';
 import { DeleteUserClientUseCase } from 'src/accounts/application/userClient/useCase/Delete';
 import { DeleteUserClientController } from './controllers/delete.controller';
+import { UpdateUserClientUseCase } from 'src/accounts/application/userClient/useCase/Update';
+import { UpdateUserClientController } from './controllers/updte.controller';
 
 @Module({
   imports: [DatabaseModule, ServiceModule],
@@ -49,12 +51,26 @@ import { DeleteUserClientController } from './controllers/delete.controller';
       },
       inject: [UserClientGateway],
     },
+    {
+      provide: UpdateUserClientUseCase,
+      useFactory: (
+        userClientGateway: UserClientGateway,
+        passwordHashGateway: PasswordHashGateway,
+      ) => {
+        return new UpdateUserClientUseCase(
+          userClientGateway,
+          passwordHashGateway,
+        );
+      },
+      inject: [UserClientGateway, PasswordHashGateway],
+    },
   ],
   controllers: [
     CreateUserClientController,
     ListUserClientController,
     FindUserClientController,
     DeleteUserClientController,
+    UpdateUserClientController,
   ],
 })
 export class UserClientModule {}
