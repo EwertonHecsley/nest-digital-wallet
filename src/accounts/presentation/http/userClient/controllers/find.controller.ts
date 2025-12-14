@@ -5,15 +5,18 @@ import {
   HttpStatus,
   Param,
   BadRequestException,
+  UseGuards,
 } from '@nestjs/common';
 import { FindUserClientUseCase } from 'src/accounts/application/userClient/useCase/Find';
 import { UserClientPresenter } from '../presenter/UserClientPresenter';
 import { validate as isUuid } from 'uuid';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @Controller('userClient')
 export class FindUserClientController {
   constructor(private readonly findUserClientUseCase: FindUserClientUseCase) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async handler(@Param('id') id: string) {

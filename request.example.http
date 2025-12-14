@@ -1,4 +1,5 @@
 @baseUrl= http://localhost:3000
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjU3MzU5NTV9.I93qGwQsncdOaPOA0nbnXmN5CCsUIeVOZ-fmn8qmpGw
 
 ###
 GET  {{baseUrl}}/health
@@ -16,12 +17,23 @@ Content-Type: application/json
 }
 
 ###
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "usuario10@email.com",
+    "password": "1234"
+}
+
+###
 GET {{baseUrl}}/userClient?page=1&limit=10
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 ###
 GET {{baseUrl}}/userClient/223c20ea-32d5-4d00-8da2-2530b73a49c5
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 ###
 DELETE {{baseUrl}}/userClient/5bfd7066-b2db-48f9-ac56-d8a1edd61b40
