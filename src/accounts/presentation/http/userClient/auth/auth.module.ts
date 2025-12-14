@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { UserClientRepository } from 'src/accounts/infra/database/repositories/UserClientRepository';
 import { PasswordHashService } from 'src/accounts/infra/services/PasswordHash.service';
@@ -20,7 +20,6 @@ import { AuthService } from './auth.service';
     UserClientRepository,
     AuthService,
     DrizzleService,
-    JwtService,
     PasswordHashService,
     JwtStrategy,
   ],
