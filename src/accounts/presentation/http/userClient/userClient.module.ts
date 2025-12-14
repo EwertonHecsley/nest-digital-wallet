@@ -13,9 +13,10 @@ import { DeleteUserClientUseCase } from 'src/accounts/application/userClient/use
 import { DeleteUserClientController } from './controllers/delete.controller';
 import { UpdateUserClientUseCase } from 'src/accounts/application/userClient/useCase/Update';
 import { UpdateUserClientController } from './controllers/updte.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [DatabaseModule, ServiceModule],
+  imports: [DatabaseModule, ServiceModule, AuthModule],
   providers: [
     {
       provide: CreateUseClientUseCase,

@@ -1,7 +1,8 @@
-import { Controller, Get, HttpCode, Query, Res } from '@nestjs/common';
+import { Controller, Get, HttpCode, Query, Res, UseGuards } from '@nestjs/common';
 import type { Response } from 'express';
 import { ListUserClientsUseCase } from 'src/accounts/application/userClient/useCase/List';
 import { UserClientPresenter } from '../presenter/UserClientPresenter';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @Controller('userClient')
 export class ListUserClientController {
@@ -9,6 +10,7 @@ export class ListUserClientController {
     private readonly listUserClientsUseCase: ListUserClientsUseCase,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(200)
   async handler(

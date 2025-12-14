@@ -1,7 +1,8 @@
-import { Body, Controller, HttpCode, Param, Patch, Res } from '@nestjs/common';
+import { Body, Controller, HttpCode, Param, Patch, Res, UseGuards } from '@nestjs/common';
 import { UpdateUserClientUseCase } from 'src/accounts/application/userClient/useCase/Update';
 import { UpdateUserClientDTO } from './dto/UdateUserClientDto';
 import type { Response } from 'express';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @Controller('userClient')
 export class UpdateUserClientController {
@@ -9,6 +10,7 @@ export class UpdateUserClientController {
     private readonly updateUserClientUseCase: UpdateUserClientUseCase,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @HttpCode(204)
   async handler(

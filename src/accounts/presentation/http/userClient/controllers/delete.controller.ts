@@ -5,10 +5,12 @@ import {
   HttpCode,
   Param,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import type { Response } from 'express';
 import { DeleteUserClientUseCase } from 'src/accounts/application/userClient/useCase/Delete';
 import { validate as isUuid } from 'uuid';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @Controller('userClient')
 export class DeleteUserClientController {
@@ -16,6 +18,7 @@ export class DeleteUserClientController {
     private readonly deleteUserClientUseCase: DeleteUserClientUseCase,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @HttpCode(204)
   async handler(
