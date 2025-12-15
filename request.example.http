@@ -1,5 +1,5 @@
 @baseUrl= http://localhost:3000
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjU4MjMzMzIsImV4cCI6MTc2NTgyMzkzMn0.XfbE-A8s1DdEjGAvEiJFAYnGfyaz_YWQaQGc5Jc_CG8
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjU4MjcwNTUsImV4cCI6MTc2NTgyNzY1NX0.yYyBU98B14y6_pEkdYZ-W5O5hZuXWOw-81NtODtgOMI
 
 ###
 GET  {{baseUrl}}/health
@@ -31,7 +31,7 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 ###
-GET {{baseUrl}}/userClient/223c20ea-32d5-4d00-8da2-2530b73a49c5
+GET {{baseUrl}}/userClient/da557b53-867a-4541-a493-1f1ddbdcb913
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
@@ -46,4 +46,13 @@ Content-Type: application/json
     "fullName": "Da Silva",
     "email": "da.silva.atualizado@email.com",
     "password": "1234"
+}
+
+###
+POST {{baseUrl}}/deposit
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "amount": 100
 }
