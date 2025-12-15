@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
   imports: [
     PassportModule,
     JwtModule.register({
-      signOptions: { expiresIn: '5min' },
+      signOptions: { expiresIn: '10min' },
       secret: process.env.JWT_SECRET,
     }),
   ],

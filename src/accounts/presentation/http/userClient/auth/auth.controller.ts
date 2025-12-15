@@ -21,12 +21,12 @@ export class AuthController {
     }
     const accessToken = await this.authService.getToken(result);
 
-    const { password:_, ...user } = result
+    const { password: _, ...user } = result;
 
     request.user = user;
 
     return response.status(HttpStatus.ACCEPTED).json({
-      user:UserClientPresenter.toHTTP(result),
+      user: UserClientPresenter.toHTTP(result),
       accessToken,
     });
   }
