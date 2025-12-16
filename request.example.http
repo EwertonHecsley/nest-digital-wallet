@@ -1,5 +1,5 @@
 @baseUrl= http://localhost:3000
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjU4MjcwNTUsImV4cCI6MTc2NTgyNzY1NX0.yYyBU98B14y6_pEkdYZ-W5O5hZuXWOw-81NtODtgOMI
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjU4NDc5NjIsImV4cCI6MTc2NTg0ODU2Mn0.v8Rv6o-LwwQIkI10sI5rUTQOzLoXOLSK05ll6nWDISI
 
 ###
 GET  {{baseUrl}}/health
@@ -50,6 +50,15 @@ Content-Type: application/json
 
 ###
 POST {{baseUrl}}/deposit
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "amount": 100
+}
+
+###
+POST {{baseUrl}}/withdraw
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
