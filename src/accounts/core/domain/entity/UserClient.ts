@@ -131,4 +131,20 @@ export class UserClient extends Entity<UserClientAttributes> {
     destinationUser._attributes.balance = newDestinationBalanceOrError.value;
     return right(true);
   }
+
+  withdraw(amount: number): Either<InvalidBalanceException, UserClient> {
+    if (amount <= 0) {
+      return left(
+        new InvalidBalanceException(
+          'Amount to withdraw must be greater than zero.',
+        ),
+      );
+    }
+    const newBalanceOrError = this._attributes.balance.subtract(amount);
+    if (newBalanceOrError.isLeft()) {
+      return left(newBalanceOrError.value);
+    }
+    this._attributes.balance = newBalanceOrError.value;
+    return right(this);
+  }
 }

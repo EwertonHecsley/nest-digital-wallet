@@ -1,7 +1,12 @@
-import { Body, Controller, HttpCode, Post, Res, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { DepositUseClientUseCase } from 'src/accounts/application/userClient/useCase/Deposit';
 import { DepositUserClientDto } from './dto/DepositUserClientDto';
-import type { Response } from 'express';
 import { type AuthUser, CurrentUser } from 'src/shared/decorators/CurrentUser';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
@@ -11,11 +16,10 @@ export class DepositUserClientController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  @HttpCode(200)
+  @HttpCode(204)
   async handler(
     @Body() body: DepositUserClientDto,
     @CurrentUser() user: AuthUser,
-    @Res() response: Response,
   ): Promise<void> {
     const { id } = user;
     const { amount } = body;
@@ -26,8 +30,6 @@ export class DepositUserClientController {
       throw result.value;
     }
 
-    response.json({
-      message: 'Deposit completed successfully.',
-    });
+    return;
   }
 }
