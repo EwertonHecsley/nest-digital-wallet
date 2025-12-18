@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  HttpCode,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common';
 import { DepositUseClientUseCase } from 'src/accounts/application/userClient/useCase/Deposit';
 import { DepositUserClientDto } from './dto/DepositUserClientDto';
 import { type AuthUser, CurrentUser } from 'src/shared/decorators/CurrentUser';

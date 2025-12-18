@@ -17,13 +17,10 @@ export class WithdrawUserClientUseCase {
     const withdrawResult = userClient.withdraw(amount);
 
     if (withdrawResult.isLeft()) {
-      return left(
-        new BadRequestException(withdrawResult.value.message),
-      );
+      return left(new BadRequestException(withdrawResult.value.message));
     }
 
     await this.userClientGateway.save(userClient);
     return right(true);
   }
 }
-

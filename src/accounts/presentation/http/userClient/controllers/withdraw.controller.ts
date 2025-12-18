@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  HttpCode,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common';
 import { WithdrawUserClientUseCase } from 'src/accounts/application/userClient/useCase/Withdraw';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { WithdrawUserClientDto } from './dto/WithdrawUserClientDto';

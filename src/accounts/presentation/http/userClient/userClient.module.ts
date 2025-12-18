@@ -18,6 +18,8 @@ import { DepositUseClientUseCase } from 'src/accounts/application/userClient/use
 import { DepositUserClientController } from './controllers/deposit.controller';
 import { WithdrawUserClientUseCase } from 'src/accounts/application/userClient/useCase/Withdraw';
 import { WithdrawUserClientController } from './controllers/withdraw.controller';
+import { TransferUserClientUseCase } from 'src/accounts/application/userClient/useCase/Transfer';
+import { TransferUserClientController } from './controllers/transfer.controller';
 
 @Module({
   imports: [DatabaseModule, ServiceModule, AuthModule],
@@ -83,6 +85,13 @@ import { WithdrawUserClientController } from './controllers/withdraw.controller'
       },
       inject: [UserClientGateway],
     },
+    {
+      provide: TransferUserClientUseCase,
+      useFactory: (userClientGateway: UserClientGateway) => {
+        return new TransferUserClientUseCase(userClientGateway);
+      },
+      inject: [UserClientGateway],
+    },
   ],
   controllers: [
     CreateUserClientController,
@@ -92,6 +101,7 @@ import { WithdrawUserClientController } from './controllers/withdraw.controller'
     UpdateUserClientController,
     DepositUserClientController,
     WithdrawUserClientController,
+    TransferUserClientController,
   ],
 })
 export class UserClientModule {}
