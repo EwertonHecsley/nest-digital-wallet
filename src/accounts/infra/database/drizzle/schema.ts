@@ -1,4 +1,5 @@
 import { integer } from 'drizzle-orm/pg-core';
+import { pgEnum } from 'drizzle-orm/pg-core';
 import { timestamp } from 'drizzle-orm/pg-core';
 import { uuid } from 'drizzle-orm/pg-core';
 import { pgTable as table, text } from 'drizzle-orm/pg-core';
@@ -12,4 +13,21 @@ export const userClient = table('user_client', {
   userType: text('user_type').notNull(),
   cpf: text('cpf').notNull().unique(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+export const transactionTypeEnum = pgEnum('transaction_type', [
+  'DEPOSIT',
+  'WITHDRAW',
+  'TRANSFER_SENT',
+  'TRANSFER_RECEIVED',
+]);
+
+export const transactions = table('transactions', {
+  id: uuid('id').primaryKey().defaultRandom(),
+
+  userId: uuid('user_id').notNull(),
+  relatedUserId: uuid('related_user_id'),
+  type: transactionTypeEnum('type').notNull(),
+  amountInCents: integer('amount_in_cents').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });

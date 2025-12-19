@@ -1,5 +1,5 @@
 @baseUrl= http://localhost:3000
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjYwMTYyNzIsImV4cCI6MTc2NjAxNjg3Mn0.MlmKVAFsiR82Sc0YsWyiTyliNJEclPKpEXFLD-3m5ik
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjYxMDI0NjEsImV4cCI6MTc2NjEwMzA2MX0.EFomD3AAF9_i12qXdPctV1uUv-GGSUFtt9XZXartREE
 
 ###
 GET  {{baseUrl}}/health
@@ -74,4 +74,9 @@ Authorization: Bearer {{accessToken}}
 {
     "toUserId": "7c8fd09d-a434-4ec9-bf56-d2386959d601",
     "amount": 100
-}   
+}
+
+###
+GET {{baseUrl}}/extract
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
