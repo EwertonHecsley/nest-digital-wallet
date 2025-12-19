@@ -7,7 +7,6 @@ export class UserClientPresenter {
       name: userClient.fullName,
       email: userClient.email.toValue,
       type: userClient.UserType,
-      balance: userClient.balance.formatAsReal,
       createdAt: userClient.createdAt.toLocaleDateString('pt-BR'),
     };
   }

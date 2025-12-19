@@ -1,6 +1,9 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { Transaction } from 'src/accounts/core/domain/entity/Transaction';
 import { UserClient } from 'src/accounts/core/domain/entity/UserClient';
+import { TransactionGateway } from 'src/accounts/core/domain/ports/TransactionGateway';
 import { UserClientGateway } from 'src/accounts/core/domain/ports/UserClientGateway';
+import { TransactionType } from 'src/shared/enums/TransactionType';
 import { Either, right } from 'src/shared/utils/either';
 
 type TransferInput = {
@@ -15,7 +18,10 @@ type TransferOutput = {
 };
 
 export class TransferUserClientUseCase {
-  constructor(private readonly userClientGateway: UserClientGateway) {}
+  constructor(
+    private readonly userClientGateway: UserClientGateway,
+    private readonly transactionGateway: TransactionGateway,
+  ) {}
 
   async execute(
     input: TransferInput,
@@ -28,9 +34,10 @@ export class TransferUserClientUseCase {
       'Receiver',
     );
 
-    await this.executeTransfer(sender, receiver, input.amount);
+    this.executeTransfer(sender, receiver, input.amount);
 
     await this.persistChanges(sender, receiver);
+    await this.registerTransaction(sender, receiver, input.amount);
 
     return right({
       fromBalance: sender.balance.valueAsReal,
@@ -79,5 +86,32 @@ export class TransferUserClientUseCase {
     for (const userClient of userClients) {
       await this.userClientGateway.save(userClient);
     }
+  }
+
+  private async registerTransaction(
+    sender: UserClient,
+    receiver: UserClient,
+    amount: number,
+  ) {
+    const amountValue = amount;
+    await this.transactionGateway.create(
+      Transaction.create({
+        userId: sender.identity.id,
+        amountInCents: amountValue,
+        type: TransactionType.TRANSFER_SENT,
+        relatedUserId: receiver.identity.id,
+        createdAt: new Date(),
+      }),
+    );
+
+    await this.transactionGateway.create(
+      Transaction.create({
+        userId: receiver.identity.id,
+        amountInCents: amountValue,
+        type: TransactionType.TRANSFER_RECEIVED,
+        relatedUserId: sender.identity.id,
+        createdAt: new Date(),
+      }),
+    );
   }
 }
