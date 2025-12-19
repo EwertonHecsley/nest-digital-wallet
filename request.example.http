@@ -1,5 +1,5 @@
 @baseUrl= http://localhost:3000
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYTU1N2I1My04NjdhLTQ1NDEtYTQ5My0xZjFkZGJkY2I5MTMiLCJlbWFpbCI6InVzdWFyaW8xMEBlbWFpbC5jb20iLCJpYXQiOjE3NjYxMDI0NjEsImV4cCI6MTc2NjEwMzA2MX0.EFomD3AAF9_i12qXdPctV1uUv-GGSUFtt9XZXartREE
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0OTdiMGU2My0wNTBiLTQxMTQtOTc0YS1kYjQ5Mzc2MDRhZmEiLCJlbWFpbCI6Im5vdm9AZW1haWwuY29tIiwiaWF0IjoxNzY2MTA3MzAzLCJleHAiOjE3NjYxMDc5MDN9.fSD5eMTOOaU30yHfkvF0kODSVz2lY4Lup7mx1p9fxrw
 
 ###
 GET  {{baseUrl}}/health
@@ -10,10 +10,10 @@ POST {{baseUrl}}/userClient
 Content-Type: application/json
 
 {
-    "fullName": "Usuario Teste 10",
-    "email": "usuario10@email.com",
+    "fullName": "Novo Cliente Cadastrado",
+    "email": "novo@email.com",
     "password": "1234",
-    "cpf": "12345678999"
+    "cpf": "12345678910"
 }
 
 ###
@@ -21,7 +21,7 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-    "email": "usuario10@email.com",
+    "email": "novo@email.com",
     "password": "1234"
 }
 
@@ -31,12 +31,14 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 ###
-GET {{baseUrl}}/userClient/da557b53-867a-4541-a493-1f1ddbdcb913
+GET {{baseUrl}}/userClient/497b0e63-050b-4114-974a-db4937604afa
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 ###
-DELETE {{baseUrl}}/userClient/5bfd7066-b2db-48f9-ac56-d8a1edd61b40
+DELETE {{baseUrl}}/userClient/42d36331-6ded-4b75-a1aa-0038ee5335cb
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 ###
 PATCH {{baseUrl}}/userClient/223c20ea-32d5-4d00-8da2-2530b73a49c5
@@ -72,8 +74,8 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "toUserId": "7c8fd09d-a434-4ec9-bf56-d2386959d601",
-    "amount": 100
+    "toUserId": "497b0e63-050b-4114-974a-db4937604afa",
+    "amount": 50
 }
 
 ###

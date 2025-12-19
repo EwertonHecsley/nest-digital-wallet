@@ -20,6 +20,7 @@ import { WithdrawUserClientUseCase } from 'src/accounts/application/userClient/u
 import { WithdrawUserClientController } from './controllers/withdraw.controller';
 import { TransferUserClientUseCase } from 'src/accounts/application/userClient/useCase/Transfer';
 import { TransferUserClientController } from './controllers/transfer.controller';
+import { TransactionGateway } from 'src/accounts/core/domain/ports/TransactionGateway';
 
 @Module({
   imports: [DatabaseModule, ServiceModule, AuthModule],
@@ -73,24 +74,42 @@ import { TransferUserClientController } from './controllers/transfer.controller'
     },
     {
       provide: DepositUseClientUseCase,
-      useFactory: (userClientGateway: UserClientGateway) => {
-        return new DepositUseClientUseCase(userClientGateway);
+      useFactory: (
+        userClientGateway: UserClientGateway,
+        transactionGateway: TransactionGateway,
+      ) => {
+        return new DepositUseClientUseCase(
+          userClientGateway,
+          transactionGateway,
+        );
       },
-      inject: [UserClientGateway],
+      inject: [UserClientGateway, TransactionGateway],
     },
     {
       provide: WithdrawUserClientUseCase,
-      useFactory: (userClientGateway: UserClientGateway) => {
-        return new WithdrawUserClientUseCase(userClientGateway);
+      useFactory: (
+        userClientGateway: UserClientGateway,
+        transactionGateway: TransactionGateway,
+      ) => {
+        return new WithdrawUserClientUseCase(
+          userClientGateway,
+          transactionGateway,
+        );
       },
-      inject: [UserClientGateway],
+      inject: [UserClientGateway, TransactionGateway],
     },
     {
       provide: TransferUserClientUseCase,
-      useFactory: (userClientGateway: UserClientGateway) => {
-        return new TransferUserClientUseCase(userClientGateway);
+      useFactory: (
+        userClientGateway: UserClientGateway,
+        transactionGateway: TransactionGateway,
+      ) => {
+        return new TransferUserClientUseCase(
+          userClientGateway,
+          transactionGateway,
+        );
       },
-      inject: [UserClientGateway],
+      inject: [UserClientGateway, TransactionGateway],
     },
   ],
   controllers: [
